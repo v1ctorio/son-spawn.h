@@ -7,6 +7,25 @@
 #include <limits.h>
 #include <time.h>
 
+
+// It seems like linux can't read more than 2147479552 bytes, 
+// so I need to do it in multiple calls
+// https://stackoverflow.com/questions/70368651/why-cant-linux-write-more-than-2147479552-bytes
+void fill_pointer_w_file(int file_descriptor, void* target, size_t bytes_to_read) {
+	size_t MAX_RW_COUNT = INT_MAX & sysconf(_SC_PAGESIZE);
+	size_t count = 0;
+
+	while (count < bytes_to_read) {
+		size_t now_read = MAX_RW_COUNT;
+		if (now_read > bytes_to_read-count) now_read = bytes_to_read - count;
+		
+		size_t bytes_read = read(file_descriptor, target, now_read);
+		count = count + bytes_read;
+	}
+	printf("Successfully read %ldbytes into %p\n", count, target);
+}
+
+
 int main() {
 	// Allocate a lot of memory and fill it with garbage 
 	size_t amount_of_mem = sizeof(char)*1024*1024*1024*10;
@@ -20,17 +39,9 @@ int main() {
 
 
 	printf("The /dev/urandom file descriptor is %d\n", urandom_fd);
-
-
-
-	ssize_t success = read(urandom_fd, a_lot_of_mem, amount_of_mem);
-	assert(success>=0);
-
-	if (success < amount_of_mem) {
-		printf("Only read %ld out of %ld bytes from /dev/urandom", success, amount_of_mem);
-	} else {
-		printf("Successfully (%ld) filled %ld bytes of memory with garbage",success,amount_of_mem);
-	}
+	printf("Trying to fill memory\n");
+	fill_pointer_w_file(urandom_fd, a_lot_of_mem, amount_of_mem);
+	
 
 	// For the process
 	pid_t pid = fork();
@@ -41,8 +52,9 @@ int main() {
 	}
 	
 	int seconds = 10;
-	printf("Sleeping for %dseconds", seconds);
+	printf("Sleeping for %dseconds\n", seconds);
 	sleep(seconds);
 	puts("hello gang");
 	free(a_lot_of_mem);
 }
+
