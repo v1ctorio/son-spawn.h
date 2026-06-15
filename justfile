@@ -1,2 +1,4 @@
-main:
-       gcc -Wall -Wextra -o main.o main.c
+build:
+       gcc -Wall -Wextra -ggdb -o main.o main.c
+run: build
+       ./main.o
