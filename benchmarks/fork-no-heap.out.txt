@@ -1,0 +1,10 @@
+benchmark: fork-no-heap
+#INFO: allocated 3060 in the stack
+pre_fork_timestamp = 1781703937696071;
+pid = 26140; post_fork_timestamp = 1781703937696257;
+pid = 26140; diff=186
+benchmark: fork-no-heap
+#INFO: allocated 3060 in the stack
+pre_fork_timestamp = 1781703937696071;
+pid = 0; post_fork_timestamp = 1781703937696372;
+pid = 0; diff=301
