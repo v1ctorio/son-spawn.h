@@ -25,6 +25,7 @@ int main() {
 	long pre_fork_timestamp = get_time();
 	printf("pre_fork_timestamp = %ld;\n", pre_fork_timestamp);
 	
+	fflush(stdout);
 	pid_t pid = fork();
 	
 	long post_fork_timestamp = get_time();
