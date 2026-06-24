@@ -1,0 +1,18 @@
+#INFO: invalid or missing number of GB. Defaulted to 1
+benchmark: fork-1G-heap
+#INFO: trying to fill memory
+#INFO(extended_read): successfully read 1000000000bytes into 0x7fcee8653010
+pre_fork_timestamp = 1782273490955695;
+pid = 31263; post_fork_timestamp = 1782273490955942;
+pid = 31263; post_fork_timestamp = 1782273490955942;
+pid = 31263; diff = 247
+#info: sleeping for 10seconds
+#INFO: invalid or missing number of GB. Defaulted to 1
+benchmark: fork-1G-heap
+#INFO: trying to fill memory
+#INFO(extended_read): successfully read 1000000000bytes into 0x7fcee8653010
+pre_fork_timestamp = 1782273490955695;
+pid = 0; post_fork_timestamp = 1782273490956084;
+pid = 0; post_fork_timestamp = 1782273490956084;
+pid = 0; diff = 389
+#info: sleeping for 10seconds

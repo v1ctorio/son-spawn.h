@@ -38,7 +38,7 @@ long get_time() {
 	return currentTime.tv_sec * 1e6 + currentTime.tv_usec;
 } 
 
-int main(int argc, char **argv) {
+int main(int _argc, char **argv) {
 	int n_of_gb = atoi(argv[0]);
 	if (n_of_gb == 0) {
 		n_of_gb = 1;
@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
 	long timestamps_diff = post_fork_timestamp - pre_fork_timestamp;
 
 	printf("pid = %d; post_fork_timestamp = %ld;\n", pid, post_fork_timestamp);
-	printf("pid = %d; diff = %ld\n", timestamps_diff);
+	printf("pid = %d; diff = %ld\n", pid, timestamps_diff);
 	
 	#define SECONDS 10
 	printf("#info: sleeping for %dseconds\n", SECONDS);

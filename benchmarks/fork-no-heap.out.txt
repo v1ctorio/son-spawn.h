@@ -1,7 +1,7 @@
 benchmark: fork-no-heap
 #INFO: allocated 3060 in the stack
-pre_fork_timestamp = 1781884702314541;
-pid = 17313; post_fork_timestamp = 1781884702314632;
-pid = 17313; diff = 91
-pid = 0; post_fork_timestamp = 1781884702314705;
-pid = 0; diff = 164
+pre_fork_timestamp = 1782273487126222;
+pid = 31214; post_fork_timestamp = 1782273487126427;
+pid = 31214; diff = 205
+pid = 0; post_fork_timestamp = 1782273487126541;
+pid = 0; diff = 319
